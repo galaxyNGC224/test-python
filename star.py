@@ -18,7 +18,8 @@ class Star2d:
         self.color = pygame.color.Color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     def match(self):
-        if (self.x < 0) or (self.x > WIDTH) or (self.y < 0) or (self.y > HEIGTH):
+        if (self.x - self.radius < 0) or (self.x + self.radius > WIDTH) or (self.y - self.radius < 0) \
+                or (self.y + self.radius > HEIGTH):
             self.new()
 
     def update(self):
