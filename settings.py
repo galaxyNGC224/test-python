@@ -1,7 +1,7 @@
 # size
-size = WIDTH, HEIGHT = 600, 400
-HALF_WIDTH = WIDTH // 2
-HALF_HEIGHT = HEIGHT // 2
+SIZE = WIDTH, HEIGHT = 600, 400
+CENTER_X = WIDTH // 2
+CENTER_Y = HEIGHT // 2
 
 # colors (R, G, B)
 BLACK = (0, 0, 0)
@@ -11,10 +11,10 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
 # clock
-FPS = 60
+FPS = 120
 
 # star
-MAX_STARS = 100
+MAX_STARS = 1000
 MAX_SPEED = 10
 MAX_RADIUS = 1
 MAX_DEPTH = 1000

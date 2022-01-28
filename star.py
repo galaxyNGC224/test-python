@@ -30,27 +30,25 @@ class Star2d:
 class Star3d:
     def __init__(self, screen):
         self.screen = screen
-        self.x, self.y, self.z = random.randint(-HALF_WIDTH, HALF_WIDTH), random.randint(-HALF_HEIGHT, HALF_HEIGHT), random.randint(2, MAX_DEPTH)
-        while (self.x == 0) and (self.y == 0):
-            self.x, self.y = random.randint(-HALF_WIDTH, HALF_WIDTH), random.randint(-HALF_HEIGHT, HALF_HEIGHT)
+        self.x, self.y, self.z = random.randint(0, WIDTH), random.randint(0, HEIGHT), random.randint(2, MAX_DEPTH)
         self.color = pygame.color.Color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
         self.radius = random.randint(1, MAX_RADIUS)
 
     def new(self):
-        self.x, self.y, self.z = random.randint(-HALF_WIDTH, HALF_WIDTH), random.randint(-HALF_HEIGHT, HALF_HEIGHT), MAX_DEPTH
-        while (self.x == 0) and (self.y == 0):
-            self.x, self.y = random.randint(-HALF_WIDTH, HALF_WIDTH), random.randint(-HALF_HEIGHT, HALF_HEIGHT)
+        self.x, self.y, self.z = random.randint(0, WIDTH), random.randint(0, HEIGHT), MAX_DEPTH
         self.radius = random.randint(1, MAX_RADIUS)
 
     def match(self):
         self.z -= 1
         ratio = MAX_DEPTH / self.z
-        curr_x = int(self.x * ratio + HALF_WIDTH)
-        curr_y = int(self.y * ratio + HALF_HEIGHT)
+        curr_x = int((self.x - CENTER_X) * ratio) + CENTER_X
+        curr_y = int((self.y - CENTER_Y) * ratio) + CENTER_Y
         curr_radius = int(self.radius * ratio)
         if (curr_x < 0) or (curr_x > WIDTH) or (curr_y < 0) or (curr_y > HEIGHT) or (self.x < 2):
             self.new()
-            return self.x, self.y, self.radius
+            curr_x = int((self.x - CENTER_X) * ratio) + CENTER_X
+            curr_y = int((self.y - CENTER_Y) * ratio) + CENTER_Y
+
         return curr_x, curr_y, curr_radius
 
     def update(self):

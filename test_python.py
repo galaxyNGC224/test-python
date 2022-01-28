@@ -4,7 +4,7 @@ from star import Star3d
 
 pygame.init()
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((SIZE))
 
 pygame.display.set_caption('Hallo')
 clock = pygame.time.Clock()
