@@ -32,15 +32,31 @@ class Star2d:
 class Star3d:
     def __init__(self, screen):
         self.screen = screen
-        self.x, self.y, self.z = random.randint(-WIDTH, WIDTH), random.randint(-HEIGTH, HEIGTH), \
-                                 random.randint(1, MAX_DEPTH)
+        self.x, self.y, self.z = random.randint(-HALF_WIDTH, HALF_WIDTH), random.randint(-HALF_HEIGHT, HALF_HEIGHT), random.randint(2, MAX_DEPTH)
+        while (self.x == 0) and (self.y == 0):
+            self.x, self.y = random.randint(-HALF_WIDTH, HALF_WIDTH), random.randint(-HALF_HEIGHT, HALF_HEIGHT)
         self.color = pygame.color.Color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        self.radius = random.randint(1, MAX_RADIUS)
 
     def new(self):
-        pass
+        self.x, self.y, self.z = random.randint(-HALF_WIDTH, HALF_WIDTH), random.randint(-HALF_HEIGHT, HALF_HEIGHT), MAX_DEPTH
+        while (self.x == 0) and (self.y == 0):
+            self.x, self.y = random.randint(-HALF_WIDTH, HALF_WIDTH), random.randint(-HALF_HEIGHT, HALF_HEIGHT)
+        self.radius = random.randint(1, MAX_RADIUS)
 
     def match(self):
-        pass
+        self.z -= 1
+        ratio = MAX_DEPTH // self.z
+        curr_x = self.x * ratio + WIDTH
+        curr_y = self.y * ratio + HEIGHT
+        curr_radius = self.radius * ratio
+        if (curr_x < 0) or (curr_x > WIDTH) or (curr_y < 0) or (curr_y > HEIGHT) or (self.x < 2):
+            self.new()
+            return self.x, self.y, self.radius
+        return curr_x, curr_y, curr_radius
 
     def update(self):
-        pass
+        x, y, radius = self.match()
+        pygame.draw.circle(self.screen, self.color, (x, y), radius)
+
+

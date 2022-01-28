@@ -1,14 +1,14 @@
 import pygame
 from settings import *
-from star import Star2d
+from star import Star3d
 
 pygame.init()
 
-screen = pygame.display.set_mode((WIDTH, HEIGTH))
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 pygame.display.set_caption('Hallo')
 clock = pygame.time.Clock()
-stars = [Star2d(screen) for s in range(MAX_STARS)]
+stars = [Star3d(screen) for s in range(MAX_STARS)]
 running = True
 
 while running:

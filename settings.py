@@ -1,5 +1,7 @@
 # size
-size = WIDTH, HEIGTH = 600, 400
+size = WIDTH, HEIGHT = 600, 400
+HALF_WIDTH = WIDTH // 2
+HALF_HEIGHT = HEIGHT // 2
 
 # colors (R, G, B)
 BLACK = (0, 0, 0)
@@ -12,7 +14,7 @@ BLUE = (0, 0, 255)
 FPS = 60
 
 # star
-MAX_STARS = 1000
+MAX_STARS = 100
 MAX_SPEED = 10
 MAX_RADIUS = 7
 MAX_DEPTH = 1000
