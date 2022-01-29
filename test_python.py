@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from star import Star3d
+from track import Track
 
 pygame.init()
 
@@ -10,6 +11,7 @@ pygame.display.set_caption('Hallo')
 clock = pygame.time.Clock()
 stars = [Star3d(screen) for s in range(MAX_STARS)]
 running = True
+tracks = [Track(screen) for t in range(MAX_TRACKS)]
 
 while running:
     clock.tick(FPS)

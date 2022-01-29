@@ -1,5 +1,6 @@
 import random
 import pygame
+import math
 from settings import *
 
 class Star2d:
@@ -33,10 +34,12 @@ class Star3d:
         self.x, self.y, self.z = random.randint(0, WIDTH), random.randint(0, HEIGHT), random.randint(2, MAX_DEPTH)
         self.color = pygame.color.Color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
         self.radius = random.randint(1, MAX_RADIUS)
+        self.distance = math.sqrt((self.x - CENTER_X) ** 2 + (self.y - CENTER_Y) ** 2)
 
     def new(self):
         self.x, self.y, self.z = random.randint(0, WIDTH), random.randint(0, HEIGHT), MAX_DEPTH
         self.radius = random.randint(1, MAX_RADIUS)
+        self.distance = math.sqrt((self.x - CENTER_X) ** 2 + (self.y - CENTER_Y) ** 2)
 
     def match(self):
         self.z -= 1
