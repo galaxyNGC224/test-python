@@ -52,6 +52,7 @@ class Star3d:
             self.new()
             self.curr_x = int((self.x - CENTER_X) * ratio) + CENTER_X
             self.curr_y = int((self.y - CENTER_Y) * ratio) + CENTER_Y
+        self.distance = math.sqrt((self.x - CENTER_X) ** 2 + (self.y - CENTER_Y) ** 2)
 
     def update(self):
         pygame.draw.circle(self.screen, self.color, (self.curr_x, self.curr_y), self.curr_radius)

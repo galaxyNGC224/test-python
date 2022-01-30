@@ -5,7 +5,7 @@ from track import Track
 
 pygame.init()
 
-screen = pygame.display.set_mode((SIZE))
+screen = pygame.display.set_mode(SIZE)
 
 pygame.display.set_caption('Hallo')
 clock = pygame.time.Clock()
@@ -20,12 +20,9 @@ while running:
             running = False
     screen.fill(BLACK)
     [stars[s].move() for s in range(MAX_STARS)]
+    stars.sort(key=lambda s: s.distance, reverse=True)
     [stars[s].update() for s in range(MAX_STARS)]
 
     pygame.display.flip()
 
 pygame.quit()
-
-
-
-
