@@ -19,7 +19,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     screen.fill(BLACK)
-
+    [stars[s].move() for s in range(MAX_STARS)]
     [stars[s].update() for s in range(MAX_STARS)]
 
     pygame.display.flip()

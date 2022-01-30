@@ -35,25 +35,23 @@ class Star3d:
         self.color = pygame.color.Color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
         self.radius = random.randint(1, MAX_RADIUS)
         self.distance = math.sqrt((self.x - CENTER_X) ** 2 + (self.y - CENTER_Y) ** 2)
+        self.curr_x, self.curr_y, self.curr_radius = 0, 0, 0
 
     def new(self):
         self.x, self.y, self.z = random.randint(0, WIDTH), random.randint(0, HEIGHT), MAX_DEPTH
         self.radius = random.randint(1, MAX_RADIUS)
         self.distance = math.sqrt((self.x - CENTER_X) ** 2 + (self.y - CENTER_Y) ** 2)
 
-    def match(self):
+    def move(self):
         self.z -= 1
         ratio = MAX_DEPTH / self.z
-        curr_x = int((self.x - CENTER_X) * ratio) + CENTER_X
-        curr_y = int((self.y - CENTER_Y) * ratio) + CENTER_Y
-        curr_radius = int(self.radius * ratio)
-        if (curr_x < 0) or (curr_x > WIDTH) or (curr_y < 0) or (curr_y > HEIGHT) or (self.x < 2):
+        self.curr_x = int((self.x - CENTER_X) * ratio) + CENTER_X
+        self.curr_y = int((self.y - CENTER_Y) * ratio) + CENTER_Y
+        self.curr_radius = int(self.radius * ratio)
+        if (self.curr_x < 0) or (self.curr_x > WIDTH) or (self.curr_y < 0) or (self.curr_y > HEIGHT) or (self.x < 2):
             self.new()
-            curr_x = int((self.x - CENTER_X) * ratio) + CENTER_X
-            curr_y = int((self.y - CENTER_Y) * ratio) + CENTER_Y
-
-        return curr_x, curr_y, curr_radius
+            self.curr_x = int((self.x - CENTER_X) * ratio) + CENTER_X
+            self.curr_y = int((self.y - CENTER_Y) * ratio) + CENTER_Y
 
     def update(self):
-        x, y, radius = self.match()
-        pygame.draw.circle(self.screen, self.color, (x, y), radius)
+        pygame.draw.circle(self.screen, self.color, (self.curr_x, self.curr_y), self.curr_radius)
