@@ -4,7 +4,7 @@ import random
 TILE = 20
 FIELD = 30
 SIZE = FIELD * TILE
-BORDER = 2
+BORDER = 1
 
 FPS = 5
 
@@ -18,7 +18,6 @@ pygame.init()
 screen = pygame.display.set_mode((SIZE, SIZE))
 x, y = FIELD // 2, FIELD // 2
 snake = [[x, y]]
-
 length = 1
 dx, dy = 1, 0
 apple = [random.randrange(1, FIELD - 1), random.randrange(1, FIELD - 1)]
@@ -29,6 +28,8 @@ pygame.display.set_caption('Hallo')
 clock = pygame.time.Clock()
 
 running = True
+
+font = pygame.font.Font('freesansbold.ttf', TILE)
 
 while running:
 
@@ -57,13 +58,19 @@ while running:
     if apple == [x, y]:
         length += 1
         apple = [random.randrange(1, FIELD - 1), random.randrange(1, FIELD - 1)]
-        #FPS += 1
+        FPS += 1
+
     snake.append([x, y])
     snake = snake[-length:]
 
-    [pygame.draw.rect(screen, GREEN, (i * TILE, j * TILE, TILE - BORDER, TILE - BORDER)) for i in range(FIELD) for j in range(FIELD)]
+    #[pygame.draw.rect(screen, GREEN, (i * TILE, j * TILE, TILE - BORDER, TILE - BORDER)) for i in range(FIELD) for j in range(FIELD)]
     [pygame.draw.rect(screen, RED, (i * TILE, j * TILE, TILE - BORDER, TILE - BORDER)) for i, j in snake]
     pygame.draw.rect(screen, BLUE, (apple[0] * TILE, apple[1] * TILE, TILE - BORDER, TILE - BORDER))
+
+    text = font.render(str(length - 1), True, GREEN, BLACK)
+    textRect = text.get_rect()
+    textRect.center = (SIZE // 2, TILE)
+    screen.blit(text, textRect)
 
     pygame.display.flip()
 
